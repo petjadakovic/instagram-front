@@ -1,0 +1,29 @@
+<app-header></app-header>
+<div>
+    <div class="container-fluid" *ngFor="let post of posts">
+        <div class="my-container">
+            <div class="row" class="top-panel">
+                <div class="col-xs-1">
+                    <img [src]="getCirclePhotoUrl(post.user.profile_picture_id)" class="my-image">
+                </div>
+                <div class="col-xs-11">
+                    <h4 class="my-username">{{post.user.username}}</h4>
+                </div>
+            </div>
+            <div class="row my-image-container"> 
+                <img [src]="getPostPhotoUrl(post.photo.id)" class="image-panel">
+            </div>
+            <div class="row" style="margin-top: 12px;">
+                <div class="col-xs-2">
+                        <img src="../../assets/images/like_not.png" style="margin-left: 15px;" width=35 height=35>
+                </div>
+                <div class="col-xs-8">
+                </div>
+                <div class="col-xs-2">
+                    <img src="../../assets/images/share.jpg" width=35 height=35 style="margin-left: 35px;">
+                </div>
+            </div>
+        </div>
+        <div style="height: 50px;"></div>
+    </div>
+</div>

@@ -1,0 +1,19 @@
+<app-header></app-header>
+<div class="container">
+    <div class="row" style="margin-top: 150px;">
+      <div class="col-md-6">
+            <div class="my-container image-upload">
+                    <img [src]="imgSrc" class="image center"/>
+                    <img src="../../assets/images/mask.png" class="center mask"/>
+            </div>
+      </div>
+      <div class="col-md-6" style="height: 320px;">
+              <div class="row">{{username}}</div>  
+              <div class="row">Followers: {{followers}}</div>   
+              <div class="row">Following: {{following}}</div>     
+              <div class="row">Total posts: {{posts_count}}</div>
+              <br>
+              <button *ngIf="!is_me"(click)="follow()">{{follow_btn}}</button>    
+      </div>
+    </div>
+  </div>

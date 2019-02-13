@@ -1,0 +1,59 @@
+.image{
+    max-height: 300px;
+    max-width: 300px;
+    position: absolute;  
+    top: 0;  
+    bottom: 0;  
+    left: 0;  
+    right: 0;  
+    margin: auto;
+}
+
+.mask{
+    height: 300px;
+    width: 300px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    position: absolute;  
+    top: 0;  
+    bottom: 0;  
+    left: 0;  
+    right: 0;  
+    margin: auto;
+}
+
+.my-container{
+    height: 300px;
+    position: relative;
+}
+
+.image-label{
+    margin-top: 15px;
+}
+
+.center{
+    display:block;
+    margin:auto;
+}
+
+.b{
+    border: 1px solid red;
+}
+
+.form-control{
+    max-width: 350px;
+}
+
+.image-upload > input
+{
+    display: none;
+}
+
+.bold{
+
+   font-weight: bold; 
+}
+
+.form-control:focus{border-color: #999999;  box-shadow: none; -webkit-box-shadow: none;} 
+.has-error .form-control:focus{box-shadow: none; -webkit-box-shadow: none;}
