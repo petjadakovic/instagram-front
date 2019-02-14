@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Output, EventEmitter } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 
@@ -9,6 +9,7 @@ export class HeaderService {
 
   private server_url = environment.server_url;
   constructor(private http: HttpClient) { }
+  @Output() change: EventEmitter<boolean> = new EventEmitter();
 
   public getUsersLike(username: string){
     let headers = new HttpHeaders({
@@ -24,4 +25,9 @@ export class HeaderService {
 
     return this.http.post(this.server_url + "posts/upload",photo, {headers: headers, observe: 'response'});
   }
+
+  public emitChange(){
+    this.change.emit(true);
+  }
+  
 }

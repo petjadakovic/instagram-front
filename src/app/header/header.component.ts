@@ -1,9 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { MatDialog, MatDialogConfig, MatAutocompleteSelectedEvent, MatOptionSelectionChange } from '@angular/material';
 import { FormControl } from '@angular/forms';
 import { HeaderService } from './header.service';
 import { environment } from 'src/environments/environment';
 import { Router } from '@angular/router';
+import { HomeComponent } from '../home/home.component';
+import { homedir } from 'os';
 
 @Component({
   selector: 'app-header',
@@ -21,6 +23,7 @@ export class HeaderComponent implements OnInit {
   image_url = environment.server_url + "users/photo-circle?id=";
 
   ngOnInit() {
+ 
   }
 
   onEmailChange(){
@@ -58,7 +61,7 @@ export class HeaderComponent implements OnInit {
     this.headerService.uploadPost(formData).subscribe(res=>{
       console.log(res);
       if(res.status == 200) {
-          
+         this.headerService.emitChange();
       }
     }, err => {
       console.log(err);

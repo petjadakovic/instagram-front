@@ -1,0 +1,40 @@
+<app-header></app-header>
+<div class="container-fluid my-container">
+  <div class="row">
+    <input class="form-control form-control-sm mr-3 w-75 my-search" type="text" placeholder="Search" aria-label="Search"
+      (ngModelChange)="onSearchChange($event)" matInput [formControl]="myControl" [matAutocomplete]="auto">
+    <mat-autocomplete #auto="matAutocomplete">
+      <mat-option *ngFor="let user of filtered" (onSelectionChange)="openChat(user)" [value]="user.username" class="my-autocomplete">
+        <div class="row my-row">
+          <div class="col-xs-3">
+            <img [src]="server_url + 'users/photo-circle?id=' + user.profile_picture_id" class="my-image">
+          </div>
+          <div class="col-xs-9">
+            <p class="my-text">{{user.username}}</p>
+          </div>
+        </div>
+      </mat-option>
+    </mat-autocomplete>
+  </div>
+  <div class="row my-bottom">
+    <div class="my-block">
+      <div #scrollMe class="row messages-box ">
+        <div class="row messages-container" *ngFor="let message of messages">
+          <ng-container *ngIf="message.from.id == my_id; else elseTemplate">
+            <img [src]="server_url + 'users/photo-circle?id=' + message.from.profile_picture_id" class="my-image-chat my-right">
+            <h5 class="my-right my-chat-text">{{message.body}}</h5>
+          </ng-container>
+          <ng-template #elseTemplate>
+            <img [src]="server_url + 'users/photo-circle?id=' + message.from.profile_picture_id" class="my-image-chat my-left">
+            <h5 class="his-chat-text my-left">{{message.body}}</h5>
+          </ng-template>
+        </div>
+      </div>
+    </div>
+
+    <div class="row input-row">
+      <input class="my-input" [disabled]="!selected" type="text" placeholder="Write a message..." aria-label="Comment"
+        (keydown)="onKeydown($event)">
+    </div>
+  </div>
+</div>

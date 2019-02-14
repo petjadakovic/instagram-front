@@ -1,13 +1,13 @@
 <app-header></app-header>
-<div class="container">
+<div class="container-fluid" style=" background-color: #ffffff;">
   <div class="row" style="margin-top: 150px;">
     <div class="col-md-6">
           <div class="my-container image-upload">
-              <label for="file-input">
+              <label for="file-input2">
                   <img [src]="imgSrc" class="image center"/>
                   <img src="../../assets/images/mask.png" class="center mask"/>
               </label>
-              <input id="file-input" type="file" (change)="setFiles($event)" style="width:200px"/>
+              <input id="file-input2" type="file" (change)="setProfileFiles($event)" style="width:200px;"/>
           </div>
           <p class="text-secondary text-center bold image-label">Click image to change profile picture</p>
     </div>

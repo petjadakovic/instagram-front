@@ -1,19 +1,24 @@
 <app-header></app-header>
-<div class="container">
+<div class="container-fluid" style=" background-color: #ffffff;">
+
     <div class="row" style="margin-top: 150px;">
-      <div class="col-md-6">
+                <div class="col-md-2"></div>  
+      <div class="col-md-4" style="margin-top: 70px">
             <div class="my-container image-upload">
                     <img [src]="imgSrc" class="image center"/>
                     <img src="../../assets/images/mask.png" class="center mask"/>
             </div>
       </div>
-      <div class="col-md-6" style="height: 320px;">
-              <div class="row">{{username}}</div>  
-              <div class="row">Followers: {{followers}}</div>   
-              <div class="row">Following: {{following}}</div>     
-              <div class="row">Total posts: {{posts_count}}</div>
+      <div class="col-md-4" style="height: 320px;">
+              <div class="row h3">{{username}}</div>  
+              <hr>
+              <div class="col-xs4"></div>
+              <div class="row h5">Followers: {{followers}}</div>   
+              <div class="row h5">Following: {{following}}</div>     
+              <div class="row h5">Total posts: {{posts_count}}</div>
               <br>
-              <button *ngIf="!is_me"(click)="follow()">{{follow_btn}}</button>    
+              <button *ngIf="!is_me"(click)="follow()" class="btn" [ngClass]="{'btn-primary': !following_him}">{{follow_btn}}</button>    
       </div>
+      <div class="col-md-2"></div>
     </div>
   </div>

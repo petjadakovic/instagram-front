@@ -54,8 +54,9 @@ export class ProfileComponent implements OnInit {
      });
    }
 
-   setFiles(event){
+   setProfileFiles(event){
     let file = <File>event.target.files[0];
+    console.log("Helllo");
     if (!file) {
       return
     }

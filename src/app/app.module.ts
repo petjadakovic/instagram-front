@@ -17,6 +17,8 @@ import { UserComponent } from './user/user.component';
 import { AuthGardService } from './auth-gard.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatDialogModule, MatButtonModule, MatCheckboxModule, MatTableModule, MAT_DIALOG_DEFAULT_OPTIONS, MatAutocompleteModule, MatFormFieldModule, MatInputModule } from '@angular/material';
+import { ChatComponent } from './chat/chat.component';
+import { StoryComponent } from './story/story.component';
 
 
 @NgModule({
@@ -27,7 +29,9 @@ import { MatDialogModule, MatButtonModule, MatCheckboxModule, MatTableModule, MA
     HomeComponent,
     ProfileComponent,
     HeaderComponent,
-    UserComponent
+    UserComponent,
+    ChatComponent,
+    StoryComponent
   ],
   imports: [
     BrowserModule,

@@ -5,37 +5,36 @@ import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root'
 })
-export class ProfileService {
+export class ChatService {
 
   private server_url = environment.server_url;
   constructor(private http: HttpClient) { }
 
-  public changeEmail(email: string){
+  public getId(){
     let headers = new HttpHeaders({
       'Authorization': localStorage.getItem('token')
     });
-    return this.http.post(this.server_url + "users/change-email",{email}, {headers: headers, observe: 'response'});
+    return this.http.get(this.server_url + "users/get-id", {headers: headers, observe: 'response'});
   }
 
-  public changePassword(password: string){
+  public getFollowing(){
     let headers = new HttpHeaders({
       'Authorization': localStorage.getItem('token')
     });
-    return this.http.post(this.server_url + "users/change-password",{password}, {headers: headers, observe: 'response'});
+    return this.http.get(this.server_url + "users/following", {headers: headers, observe: 'response'});
   }
 
-  public uploadPhoto(photo: FormData){
+  public getMessagesWith(id){
     let headers = new HttpHeaders({
       'Authorization': localStorage.getItem('token')
-      //'content-type': 'multipart/form-data'
     });
-    return this.http.post(this.server_url + "users/upload-profile",photo, {headers: headers, observe: 'response'});
+    return this.http.get(this.server_url + "messages/" + id, {headers: headers, observe: 'response'});
   }
 
-  public getProfilePicture(){
+  public sendMessage(to, body){
     let headers = new HttpHeaders({
       'Authorization': localStorage.getItem('token')
     });
-    return this.http.get(this.server_url + "users/profile-photo", {headers: headers, observe: 'response'});
+    return this.http.post(this.server_url + "messages/send",{to, body} ,{headers: headers, observe: 'response'});
   }
 }

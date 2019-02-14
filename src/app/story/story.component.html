@@ -1,0 +1,44 @@
+<div class="div my-back">
+    <div class="container-fluid " style="margin-top: 70px; " >
+        <div class="col-xs-4">
+      
+        </div>
+        <div class="col-xs-4">
+          <div class="row">
+            <div class="col-xs-1">
+              <div class="row" style="margin-top: 350px">
+                  <img src="../../assets/images/left.png" height="30" width="30"(click)="previous()" >
+              </div>
+            </div>
+            <div class="col-xs-10">
+              <div class="row">
+                <div class="col-xs-1" >
+                  <div class="row">
+                      <img *ngIf="current != -1"[src]="server_url + 'users/photo-circle?id=' + stories[current].user.profile_picture_id" height="40" width="40">
+                  </div>
+                </div>
+                <div class="col-xs-11" style="margin-top: 10px;">
+                  <div class="row">
+                    <span *ngIf="current != -1"class="h4" style="cursor: pointer; color: white" (click)="openProfile(story.user)">{{stories[current].user.username}}</span>
+                  </div>
+                </div>
+              </div>
+              <div class="row " style="margin-top: 10px;">
+                <img *ngIf="current != -1"[src]="server_url + 'users/photo?id=' + stories[current].story.photo.id" class="story-image" (mousedown) = "pause()" (mouseup)="resume()">
+              </div>
+            </div>
+            <div class="col-xs-1">
+              <div class="row" style="margin-top: 55px; margin-left: 0px;">
+                <img src="../../assets/images/x.png" height="20px" width="20px" (click)="close()">
+              </div>
+              <div class="row" style="margin-top: 280px;  margin-left: 0px;" >
+                  <img src="../../assets/images/right.png" height="30" width="30" (click)="next()">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-xs-4">
+      
+        </div>
+      </div>
+</div>

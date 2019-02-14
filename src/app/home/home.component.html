@@ -1,29 +1,86 @@
 <app-header></app-header>
 <div>
-    <div class="container-fluid" *ngFor="let post of posts">
-        <div class="my-container">
-            <div class="row" class="top-panel">
-                <div class="col-xs-1">
-                    <img [src]="getCirclePhotoUrl(post.user.profile_picture_id)" class="my-image">
+    <div class="container-fluid">
+        <div class="col-xs-3"></div>
+        <div class="col-xs-6">
+            <div class="container-fluid" *ngFor="let post of posts">
+                <div class="my-container">
+                    <div class="row" class="top-panel">
+                        <div class="col-xs-1">
+                            <img [src]="getCirclePhotoUrl(post.user.profile_picture_id)" class="my-image" (click)="openUser(post.user)">
+                        </div>
+                        <div class="col-xs-11">
+                            <h4 class="my-username" (click)="openUser(post.user)">{{post.user.username}}</h4>
+                        </div>
+                    </div>
+                    <div class="row my-image-container">
+                        <img [src]="getPostPhotoUrl(post.photo.id)" class="image-panel" (dblclick)="like(post)">
+                    </div>
+                    <div class="row" style="margin-top: 12px;">
+                        <div class="col-xs-1">
+                            <img *ngIf="!post.i_like" src="../../assets/images/like_not.png" (click)="like(post)" style="margin-left: 15px;  cursor: pointer;"
+                                width=30 height=30>
+                            <img *ngIf="post.i_like" src="../../assets/images/like.png" (click)="unlike(post)" style="margin-left: 15px;  cursor: pointer;"
+                                width=30 height=30>
+                        </div>
+                        <div class="col-xs-9">
+                        </div>
+                        <div class="col-xs-2">
+                            <img src="../../assets/images/share.jpg" (click)="share(post)" width=30 height=30 style="margin-left: 35px;  cursor: pointer;">
+                        </div>
+                    </div>
+                    <div class="row" style="margin-left: 13px; margin-top: 5px;">
+                        <span class="h5" *ngIf="post.like_count == 1">{{post.like_count}} like</span>
+                        <span class="h5" *ngIf="post.like_count != 1">{{post.like_count}} likes</span>
+                    </div>
+                    <div class="row" style="margin-left: 13px;" *ngFor="let comment of post.comments">
+                        <span class="h5">{{comment.user.username}}</span> {{comment.text}}
+                    </div>
+                    <div class="my-line"></div>
+                    <div class="row" style="margin-left: 13px;">
+                        <input class="my-input" type="text" placeholder="Add a comment..." aria-label="Comment"
+                            (keydown)="onKeydown($event, post)">
+                    </div>
                 </div>
-                <div class="col-xs-11">
-                    <h4 class="my-username">{{post.user.username}}</h4>
-                </div>
+                <div style="height: 50px;"></div>
             </div>
-            <div class="row my-image-container"> 
-                <img [src]="getPostPhotoUrl(post.photo.id)" class="image-panel">
-            </div>
-            <div class="row" style="margin-top: 12px;">
-                <div class="col-xs-2">
-                        <img src="../../assets/images/like_not.png" style="margin-left: 15px;" width=35 height=35>
+        </div>
+        <div class="col-xs-3">
+            <div class="container-fluid story-container" style="position: fixed;">
+                <div class="row">
+                    <div class="col-xs-6" style="margin-top: 10px;">
+                        <span class="h5">Stories</span>
+                    </div>
+                    <div class="col-xs-6" style="margin-top: 10px;">
+                        <p style="width: 120px; text-align: right;">
+                            <span class="h5" style="cursor: pointer;">Watch all</span>
+                        </p>
+                    </div>
                 </div>
-                <div class="col-xs-8">
+                <div class="container-fluid" style="height: 500px; display: block; overflow-x: hidden; overflow-y: auto">
+                    <div class="div" *ngFor="let story of stories">
+                        <div class="row" style="height: 50px;">
+                            <div class="col-xs-2">
+                                <img [src]="getCirclePhotoUrl(story.user.profile_picture_id) " width="40" height="40" style="cursor: pointer;" (click)="openStory(story.user)">
+                            </div>
+                            <div class="col-xs-10" style="margin-top:10px;">
+                                <div class="div" style="margin-left: 8px;">
+                                    <span class="h5" style="cursor: pointer;"  (click)="openStory(story.user)">petja</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-xs-2">
-                    <img src="../../assets/images/share.jpg" width=35 height=35 style="margin-left: 35px;">
+                <div class="row">
+                    <p style="width: 300px; text-align: center; margin-top:5px;">
+                        <label for="file-input-story" class="right ">
+                                <span class="h5" style="cursor: pointer;">Add story</span>
+                        </label>
+                        <input id="file-input-story" type="file" (change)="uploadStory($event)" class="right " style="height:0px; width: 0px;" />
+                    </p>
                 </div>
             </div>
         </div>
-        <div style="height: 50px;"></div>
     </div>
+
 </div>
